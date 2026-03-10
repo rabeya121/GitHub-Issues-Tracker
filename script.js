@@ -1,4 +1,5 @@
-// login function
+// ================= LOGIN =================
+
 function login() {
 
 const username = document.getElementById("username").value
@@ -18,13 +19,15 @@ alert("Invalid Credentials")
 }
 
 
-// ================= MAIN PART =================
+
+// ================= LOAD ISSUES =================
 
 let allIssues = []
 
 async function loadIssues() {
 
 const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
+
 const data = await res.json()
 
 allIssues = data.data
@@ -34,6 +37,7 @@ displayIssues(allIssues)
 }
 
 loadIssues()
+
 
 
 // ================= DISPLAY ISSUES =================
@@ -49,38 +53,43 @@ issues.forEach(issue => {
 const div = document.createElement("div")
 
 
-// STATUS ICON
+
+// ===== PRIORITY BASED ICON =====
+
 let statusIcon=""
 
-if(issue.status==="open"){
-statusIcon="./"
+if(issue.priority === "LOW"){
+statusIcon="./assets/Closed.png"
 }else{
-statusIcon="./assets/Closed-Status.png"
+statusIcon="./assets/Open.png"
 }
 
 
-// STATUS BORDER COLOR
+// ===== BORDER COLOR =====
+
 const borderColor =
 issue.status === "open"
 ? "border-green-500"
 : "border-purple-500"
 
 
-// PRIORITY COLOR
+// ===== PRIORITY COLOR =====
+
 let priorityColor="bg-gray-200 text-gray-600"
 
 if(issue.priority==="HIGH"){
-priorityColor="bg-red-100 text-red-500"
+priorityColor="bg-red-100 text-red-600"
 }
 else if(issue.priority==="MEDIUM"){
-priorityColor="bg-yellow-100 text-yellow-600"
+priorityColor="bg-yellow-100 text-yellow-700"
 }
 else{
 priorityColor="bg-gray-200 text-gray-600"
 }
 
 
-// CARD STYLE
+// ===== CARD STYLE =====
+
 div.className = `
 bg-white p-4 rounded-lg shadow
 border-t-4 ${borderColor}
@@ -90,10 +99,11 @@ transition
 `
 
 
-// CARD HTML
+// ===== CARD HTML =====
+
 div.innerHTML = `
 
-<div class="flex justify-between items-center mb-3">
+<div class="flex justify-between items-center mb-2">
 
 <div class="flex items-center gap-2">
 
@@ -101,16 +111,17 @@ div.innerHTML = `
 
 </div>
 
-<span class="text-xs font-semibold px-3 py-1 rounded-full ${priorityColor}">
+<span class="text-xs px-3 py-1 rounded-full ${priorityColor}">
 ${issue.priority}
 </span>
 
 </div>
 
 
-<h3 class="font-semibold text-gray-800 text-sm mb-2">
+<h3 class="font-semibold text-sm mb-2">
 ${issue.title}
 </h3>
+
 
 <p class="text-xs text-gray-500 mb-3">
 ${issue.description}
@@ -155,6 +166,7 @@ displayIssues(filtered)
 }
 
 
+
 // ================= SEARCH =================
 
 async function searchIssue() {
@@ -172,6 +184,7 @@ displayIssues(data.data)
 }
 
 
+
 // ================= MODAL =================
 
 function openModal(issue) {
@@ -186,6 +199,7 @@ document.getElementById("modalDate").innerText = "Created: " + issue.createdAt
 document.getElementById("issueModal").showModal()
 
 }
+
 
 
 // ================= ACTIVE TAB =================
