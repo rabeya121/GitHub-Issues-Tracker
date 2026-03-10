@@ -9,6 +9,8 @@
 
         <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet">
         <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Font Awesome CDN -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
 </head>
 
@@ -31,7 +33,7 @@
                 <div class="flex gap-3">
 
                         <input id="searchInput" type="text" placeholder="Search issues..."
-                                class="input input-bordered w-64" />
+                                class="input input-bordered w-64" onkeyup="searchIssue()" />
 
                         <button class="btn btn-primary">
                                 + New Issue
@@ -48,15 +50,16 @@
 
                 <div class="flex gap-3">
 
-                        <button id="allTab" class="btn btn-primary">
+                        <button id="allTab" class="btn btn-primary"
+                                onclick="displayIssues(allIssues);activeTab('allTab')">
                                 All
                         </button>
 
-                        <button id="openTab" class="btn">
+                        <button id="openTab" class="btn" onclick="filterIssues('open');activeTab('openTab')">
                                 Open
                         </button>
 
-                        <button id="closedTab" class="btn">
+                        <button id="closedTab" class="btn" onclick="filterIssues('closed');activeTab('closedTab')">
                                 Closed
                         </button>
 
@@ -118,16 +121,20 @@
                 </div>
 
         </div>
-        
-        <div class="max-w-6xl mx-auto mt-6"> <div id="issueContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"> </div> </div>
+
+        <div class="max-w-6xl mx-auto mt-6">
+                <div id="issueContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                </div>
+        </div>
 
 
-        
+
 
 
         <!-- MODAL -->
 
-        <dialog id="issueModal" class="modal">
+        <!-- <dialog id="issueModal" class="modal">
 
                 <div class="modal-box">
 
@@ -155,10 +162,81 @@
 
                 </div>
 
+        </dialog> -->
+
+
+        <dialog id="issueModal" class="rounded-xl p-0 w-[520px]">
+
+                <div class="p-6">
+
+                        <!-- TITLE -->
+                        <h2 id="modalTitle" class="text-xl font-bold mb-3"></h2>
+
+                        <!-- STATUS + AUTHOR -->
+                        <!-- <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
+                                <span
+                                        class="px-3 py-1 bg-green-600 text-white rounded-full text-xs flex items-center gap-1">
+                                        Opened
+                                        <span class="w-2 h-2 bg-green-300 rounded-full inline-block"></span>
+                                </span>
+                                <span id="modalAuthor"></span>
+                                <span id="modalDate"></span>
+                        </div> -->
+                        <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
+                                <span class="px-3 py-1 bg-green-600 text-white rounded-full text-xs">Opened</span>
+
+                                <span class="w-1.5 h-1.5 bg-gray-500 rounded-full"></span>
+
+                                <span id="modalAuthor"></span>
+
+                                <span class="w-1.5 h-1.5 bg-gray-500 rounded-full"></span>
+
+                                <span id="modalDate"></span>
+                        </div>
+
+                        <!-- LABELS -->
+                        <div class="flex gap-2 mb-4">
+                                <span id="modalLabel" class="flex gap-2 mb-4"></span>
+                        </div>
+
+                        <!-- DESCRIPTION -->
+                        <p id="modalDescription" class="text-gray-600 text-sm mb-6"></p>
+
+                        <!-- ASSIGNEE + PRIORITY -->
+                        <div class="grid grid-cols-2 bg-gray-100 rounded-lg p-4">
+
+                                <div>
+                                        <p class="text-xs text-gray-40  0">Assignee:</p>
+                                        <p id="modalAssignee" class="font-semibold"></p>
+                                </div>
+
+
+
+                                <div class="flex flex-col items-start">
+
+                                        <p class="text-xs text-gray-400 mb-1">Priority:</p>
+
+                                        <span id="modalPriority" class="px-3 py-1 rounded-full text-xs font-semibold">
+                                        </span>
+
+                                </div>
+
+
+
+                        </div>
+
+                        <!-- BUTTON -->
+                        <div class="text-right mt-6">
+                                <button onclick="closeModal()" class="px-5 py-2 bg-blue-700 text-white rounded-lg">
+                                        Close
+                                </button>
+                        </div>
+
+                </div>
+
         </dialog>
 
-
-<script src="script.js"></script>
+        <script src="script.js"></script>
 
 </body>
 
