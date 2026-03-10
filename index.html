@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Issues Tracker</title>
+
+<link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-gray-100">
+
+<!-- Navbar -->
+
+<div class="navbar bg-white shadow">
+
+<div class="flex-1 text-xl font-bold">
+Issue Tracker
+</div>
+
+<div class="flex gap-2">
+
+<input id="searchInput" type="text" placeholder="Search"
+class="input input-bordered"/>
+
+<button onclick="searchIssue()" class="btn btn-primary">
+Search
+</button>
+
+</div>
+
+</div>
+
+<!-- Tabs -->
+
+<div class="flex justify-center gap-4 mt-6">
+
+<button onclick="loadIssues()" class="btn" id="allTab">
+All
+</button>
+
+<button onclick="filterIssues('open')" class="btn" id="openTab">
+Open
+</button>
+
+<button onclick="filterIssues('closed')" class="btn" id="closedTab">
+Closed
+</button>
+
+</div>
+
+<!-- Loader -->
+
+<div id="loader" class="text-center mt-10 hidden">
+
+<span class="loading loading-spinner loading-lg"></span>
+
+</div>
+
+<!-- Cards -->
+
+<div id="issueContainer"
+class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-10">
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
