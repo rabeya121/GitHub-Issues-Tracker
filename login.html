@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Login</title>
 
-<link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"
-        
-/>
+<head>
+        <meta charset="UTF-8">
+        <title>Login</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+                integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+                crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
-<body class="flex items-center justify-center min-h-screen bg-gray-100">
+<!-- <body class="flex items-center justify-center min-h-screen bg-gray-100">
 
 <div class="bg-white p-10 rounded-lg shadow-lg w-96">
 
@@ -38,9 +37,64 @@ Sign In
 Demo: admin / admin123
 </p>
 
-</div>
+</div> -->
 
-<script src="script.js"></script>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+
+        <div class="bg-white p-10 rounded-lg shadow-lg w-[520px]">
+
+                <div class="flex justify-center mb-4">
+                        <img src="./assets/github-logo.png" class="w-16">
+                </div>
+                <div class="space-y-4">
+                        <h2 class="text-2xl font-bold text-center">GitHub Issues Tracker</h2>
+                        <p class="text-center text-gray-500 mb-6">Sign in to manage your issues</p>
+
+                        <div class="mb-3">
+                                <label class="text-sm font-medium  text-black ">Username</label>
+                                <input id="username" type="text" placeholder="Enter Username"
+                                        class="input input-bordered w-full mt-1 mb-1 bg-white" />
+
+                                <p class="text-xs text-purple-600 mb-3 hidden">Default: admin</p>
+                        </div>
+
+
+                        <div class="mb-3">
+                                <label class="text-sm font-medium text-black">Password</label>
+                                <input id="password" type="password" placeholder="Enter Password"
+                                        class="input input-bordered w-full mt-1 mb-1 bg-white" />
+
+                                <p class="text-xs text-purple-600 mb-4 hidden">Default: admin123</p>
+                        </div>
+
+
+                        <button onclick="login()" class="w-full py-3 rounded-lg text-white font-semibold
+                   bg-gradient-to-r from-purple-600 to-indigo-600">
+                                Sign In
+                        </button>
+                </div>
+
+
+
+                <div class="flex items-center my-5">
+                        <div class="flex-grow border-t"></div>
+                        <span class="mx-3 text-gray-400 text-sm">OR</span>
+                        <div class="flex-grow border-t"></div>
+                </div>
+
+                <p class="text-center text-gray-400 text-sm mb-2">Demo Credentials:</p>
+
+                <div class="bg-gray-100 p-4 rounded text-center text-sm">
+                        <p><b>Username:</b> admin</p>
+                        <p><b>Password:</b> admin123</p>
+                </div>
+
+        </div>
+
+
+
+        <script src="script.js"></script>
 
 </body>
+
 </html>
