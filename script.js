@@ -1,3 +1,15 @@
+
+const page = window.location.pathname.split("/").pop()
+
+
+if (page === "index.html" && !localStorage.getItem("login")) {
+    window.location.href = "login.html"
+}
+
+
+if (page === "login.html" && localStorage.getItem("login")) {
+    window.location.href = "index.html"
+}
 // -----------------------------LOGINPAGE---------------------------------
 
 function login() {
@@ -7,7 +19,7 @@ function login() {
 
     if (username === "admin" && password === "admin123") {
 
-        localStorage.setItem("login", true)
+        localStorage.setItem("login", "true")
         window.location.href = "index.html"
 
     } else {
