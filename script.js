@@ -1,4 +1,4 @@
-// ================= LOGIN =================
+// -----------------------------LOGINPAGE---------------------------------
 
 function login() {
 
@@ -19,8 +19,8 @@ function login() {
 }
 
 
-
-// ================= LOAD ISSUES =================
+// ----------------INDEX.HTML Start---------------------------
+//  LOAD ISSUES 
 
 let allIssues = []
 
@@ -41,168 +41,43 @@ async function loadIssues() {
 
 loadIssues()
 
+function updateIssueCount(issues) {
+
+    document.querySelector("h3.font-bold").innerText =
+        issues.length + " Issues";
+
+}
 
 
-// // ================= DISPLAY ISSUES =================
 
-// function displayIssues(issues) {
+// // DISPLAY ISSUES 
 
-// const container = document.getElementById("issueContainer")
-
-// container.innerHTML = ""
-
-// issues.forEach(issue => {
-
-// const div = document.createElement("div")
-
-// // ===== DATE FORMAT =====
-// const date = new Date(issue.createdAt).toLocaleDateString()
-
-
-// const shortDescription = issue.description.slice(0, 80) + "..."
-
-
-// // ===== LABEL BADGES =====
-// let labelBadges = "";
-
-// const label = issue.label?.toLowerCase() || "";
-
-// // যদি label ENHANCEMENT হয়
-// if(label === "enhancement"){
-//     labelBadges = `<span class="badge badge-success gap-1">
-//         <i class="fa-solid fa-lightbulb"></i> ENHANCEMENT
-//     </span>`;
-// } else {
-//     // সব অন্য label এর জন্য BUG + HELP WANTED
-//     labelBadges = `
-//     <span class="badge badge-error gap-1">
-//         <i class="fa-solid fa-bug"></i> BUG
-//     </span>
-//     <span class="badge badge-warning gap-1">
-//         <i class="fa-solid fa-life-ring"></i> HELP WANTED
-//     </span>`;
-// }
-// // ===== PRIORITY BASED ICON =====
-
-// let statusIcon = "";
-
-// if(issue.priority.toLowerCase() === "low"){
-//     statusIcon = "./assets/Closed.png";
-// }else{
-//     statusIcon = "./assets/Open.png";
-// }
-
-
-// // ===== BORDER COLOR =====
-
-// const borderColor =
-// issue.status === "open"
-// ? "border-green-500"
-// : "border-purple-500"
-
-
-// // ===== PRIORITY COLOR =====
-
-// let priorityColor="bg-gray-200 text-gray-600"
-
-// if(issue.priority==="HIGH"){
-// priorityColor="bg-red-100 text-red-600"
-// }
-// else if(issue.priority==="MEDIUM"){
-// priorityColor="bg-yellow-100 text-yellow-700"
-// }
-// else{
-// priorityColor="bg-gray-200 text-gray-600"
-// }
-
-
-// // ===== CARD STYLE =====
-
-// div.className = `
-// bg-white p-4 rounded-lg shadow
-// border-t-4 ${borderColor}
-// cursor-pointer
-// hover:shadow-lg
-// transition
-// `
-
-
-// // ===== CARD HTML =====
-
-// div.innerHTML = `
-
-// <div class="flex justify-between items-center mb-2">
-
-// <div class="flex items-center gap-2">
-
-// <img src="${statusIcon}" class="w-5 h-5">
-
-// </div>
-
-// <span class="text-xs px-3 py-1 rounded-full ${priorityColor}">
-// ${issue.priority}
-// </span>
-
-// </div>
-
-
-// <h3 class="font-semibold text-sm mb-2">
-// ${issue.title}
-// </h3>
-
-
-// <p class="text-xs text-gray-500 mb-3">
-// ${shortDescription}
-// </p>
-
-
-// <div class="flex gap-2 mb-3">
-// ${labelBadges}
-// </div>
-
-
-// <div class="border-t pt-3 text-xs text-gray-400">
-
-// <p>${issue.author}</p>
-
-// <p>${date}</p>
-
-// </div>
-
-// `
-
-// div.onclick = () => openModal(issue)
-
-// container.appendChild(div)
-
-// })
-
-// }
-// 
+ 
 function displayIssues(issues) {
+    updateIssueCount(issues)
     const container = document.getElementById("issueContainer");
     container.innerHTML = "";
 
     issues.forEach(issue => {
         const div = document.createElement("div");
 
-        // ===== DATE =====
+        //  DATE
         const date = new Date(issue.createdAt).toLocaleDateString();
         const shortDescription = issue.description ? issue.description.slice(0, 80) + "..." : "";
 
-        // ===== PRIORITY ICON =====
+        // PRIORITY ICON
         let statusIcon = issue.priority?.toLowerCase() === "low" ? "./assets/Closed.png" : "./assets/Open.png";
 
-        // ===== BORDER COLOR =====
+        // BORDER COLOR 
         const borderColor = issue.status?.toLowerCase() === "open" ? "border-green-500" : "border-purple-500";
 
-        // ===== PRIORITY COLOR =====
+        // PRIORITY COLOR 
         let priorityColor = "bg-gray-200 text-gray-600 font-semibold uppercase";
         const priority = issue.priority?.toLowerCase();
         if (priority === "high") priorityColor = "bg-red-100 text-red-600 font-semibold uppercase";
         else if (priority === "medium") priorityColor = "bg-yellow-100 text-yellow-700 font-semibold uppercase";
 
-        // ===== LABEL BADGES LOGIC =====
+        //-------------------LABEL (BUG + HELP WANTED / ENHANCEMENT)------------------
         let labelBadges = "";
         let labels = [];
 
@@ -217,15 +92,23 @@ function displayIssues(issues) {
                         <i class="fa-solid fa-lightbulb"></i> ENHANCEMENT
                    </span>`;
         } else {
-            labelBadges = `<span class="badge bg-red-100 text-red-700 font-medium gap-1">
+            labelBadges = `<span class="badge bg-red-200 text-red-700 font-medium gap-1">
                         <i class="fa-solid fa-bug"></i> BUG
                    </span>
-                   <span class="badge  bg-yellow-100 text-yellow-600 font-medium gap-1">
+                   <span class="badge  bg-yellow-200 text-yellow-600 font-medium gap-1">
                         <i class="fa-solid fa-life-ring"></i> HELP WANTED
                    </span>`;
         }
 
-        // ===== CARD STYLE =====
+    
+
+
+
+document.getElementById("modalLabel").innerHTML = labelBadges;
+
+        
+
+        // ------CARD STYLE------
         div.className = `
             bg-white p-4 rounded-lg shadow
             border-t-4 ${borderColor}
@@ -234,7 +117,7 @@ function displayIssues(issues) {
             transition
         `;
 
-        // ===== CARD HTML =====
+        // ------CARD HTML------
         div.innerHTML = `
             <div class="flex justify-between items-center mb-2">
                 <div class="flex items-center gap-2">
@@ -270,7 +153,7 @@ function displayIssues(issues) {
 
 
 
-// ================= FILTER =================
+//  FILTER ISSUES BASED ON STATUS
 
 function filterIssues(status) {
 
@@ -282,7 +165,7 @@ function filterIssues(status) {
 
 
 
-// ================= SEARCH =================
+//--------------SEARCH----------------------
 
 async function searchIssue() {
 
@@ -300,50 +183,94 @@ async function searchIssue() {
 
 
 
-// ================= MODAL =================
-
-function openModal(issue) {
-
-document.getElementById("modalTitle").innerText = issue.title
-
-document.getElementById("modalDescription").innerText = issue.description
-
-document.getElementById("modalAuthor").innerText =
-"Opened by " + issue.author
+// ----------------MODAL-----------------
 
 
-document.getElementById("modalAssignee").innerText =
-issue.author
+async function openModal(issue) {
+
+const res = await fetch(
+`https://phi-lab-server.vercel.app/api/v1/lab/issue/${issue.id}`
+)
+
+const data = await res.json()
+
+const singleIssue = data.data
+
+
+document.getElementById("modalTitle").innerText = singleIssue.title;
+document.getElementById("modalDescription").innerText = singleIssue.description;
 
 
 // DATE
-const date = new Date(issue.createdAt).toLocaleDateString()
-
-document.getElementById("modalDate").innerText = date
+const date = new Date(singleIssue.createdAt).toLocaleDateString()
 
 
+// STATUS
+const status = singleIssue.status.toLowerCase();
 
-// ===== LABEL (BUG + HELP WANTED) =====
+let badgeColor = "bg-green-600";
+let dotColor = "bg-green-500";
+let statusText = "Opened";
 
-document.getElementById("modalLabel").innerHTML = `
-<span class="bg-red-100 text-red-600 text-xs px-2 py-1 rounded flex items-center gap-1">
-<i class="fa-solid fa-bug"></i> BUG
-</span>
+if(status === "closed"){
+    badgeColor = "bg-purple-600";
+    dotColor = "bg-purple-500";
+    statusText = "Closed";
+}
 
-<span class="bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded flex items-center gap-1">
-<i class="fa-solid fa-life-ring"></i> HELP WANTED
-</span>
-`
+// STATUS BADGE
+const statusBadge = document.getElementById("modalStatus");
+statusBadge.className = `px-3 py-1 rounded-full text-xs text-white ${badgeColor}`;
+statusBadge.innerText = statusText;
+
+// AUTHOR
+document.getElementById("modalAuthor").innerText =
+"Opened by " + singleIssue.author;
 
 
+// DATE
+document.getElementById("modalDate").innerText = date;
 
 
+// ASSIGNEE
+document.getElementById("modalAssignee").innerText = singleIssue.assignee || "Unassigned";
 
-// ===== PRIORITY BADGE =====
+
+// -------------------LABEL (BUG + HELP WANTED / ENHANCEMENT)------------------
+
+let labelBadges = "";
+let labels = [];
+
+if (Array.isArray(singleIssue.label)) {
+    labels = singleIssue.label.map(l => l.toLowerCase());
+} else if (singleIssue.label) {
+    labels = [singleIssue.label.toLowerCase()];
+}
+
+if (labels.includes("enhancement")) {
+    labelBadges = `
+    <span class="bg-green-200 text-green-700 text-xs px-2 py-1 rounded flex items-center gap-1">
+        <i class="fa-solid fa-lightbulb"></i> ENHANCEMENT
+    </span>`;
+} else {
+    labelBadges = `
+    <span class="bg-red-200 text-red-600 text-xs font-medium px-2 py-1 rounded-full flex items-center gap-1">
+        <i class="fa-solid fa-bug"></i> BUG
+    </span>
+
+    <span class="bg-yellow-200 text-yellow-600 text-xs font-medium px-2 py-1 rounded-full flex items-center gap-1">
+        <i class="fa-solid fa-life-ring"></i> HELP WANTED
+    </span>`;
+}
+
+// document.getElementById("modalLabel").innerHTML = labelBadges;
+
+
+// -----------------Priority section-------------------
 
 let priorityColor = "bg-gray-200 text-gray-600 font-semibold uppercase";
 
-const priority = issue.priority?.toLowerCase();
+const priority = singleIssue.priority?.toLowerCase();
 
 if (priority === "high") {
     priorityColor = "bg-red-600 text-white font-semibold uppercase";
@@ -357,7 +284,7 @@ const priorityBadge = document.getElementById("modalPriority");
 priorityBadge.className =
 `px-3 py-1 rounded-full text-xs inline-block ${priorityColor}`;
 
-priorityBadge.innerText = issue.priority;
+priorityBadge.innerText = singleIssue.priority;
 
 
 document.getElementById("issueModal").showModal()
@@ -365,16 +292,15 @@ document.getElementById("issueModal").showModal()
 }
 
 
-
-// ================= ACTIVE TAB =================
+// ------------------BUTTON-TAB -------------------------
 
 function activeTab(tab) {
 
-    document.getElementById("allTab").classList.remove("btn-active")
-    document.getElementById("openTab").classList.remove("btn-active")
-    document.getElementById("closedTab").classList.remove("btn-active")
+    document.getElementById("allTab").classList.remove("btn-primary")
+    document.getElementById("openTab").classList.remove("btn-primary")
+    document.getElementById("closedTab").classList.remove("btn-primary")
 
-    document.getElementById(tab).classList.add("btn-active")
+    document.getElementById(tab).classList.add("btn-primary")
 
 }
 

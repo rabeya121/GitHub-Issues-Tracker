@@ -9,8 +9,14 @@
 
         <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet">
         <script src="https://cdn.tailwindcss.com"></script>
+
         <!-- Font Awesome CDN -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+                integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+                crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
 </head>
 
@@ -35,7 +41,7 @@
                         <input id="searchInput" type="text" placeholder="Search issues..."
                                 class="input input-bordered w-64" onkeyup="searchIssue()" />
 
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary bg-indigo-600">
                                 + New Issue
                         </button>
 
@@ -67,8 +73,6 @@
 
         </div>
 
-
-        <!-- ISSUE COUNT SECTION -->
 
         <!-- ISSUE INFO -->
 
@@ -129,41 +133,7 @@
         </div>
 
 
-
-
-
         <!-- MODAL -->
-
-        <!-- <dialog id="issueModal" class="modal">
-
-                <div class="modal-box">
-
-                        <h3 id="modalTitle" class="font-bold text-lg"></h3>
-
-                        <p id="modalDescription"></p>
-
-                        <p id="modalAuthor"></p>
-
-                        <p id="modalPriority"></p>
-
-                        <p id="modalLabel"></p>
-
-                        <p id="modalDate"></p>
-
-                        <div class="modal-action">
-
-                                <form method="dialog">
-
-                                        <button class="btn">Close</button>
-
-                                </form>
-
-                        </div>
-
-                </div>
-
-        </dialog> -->
-
 
         <dialog id="issueModal" class="rounded-xl p-0 w-[520px]">
 
@@ -173,25 +143,19 @@
                         <h2 id="modalTitle" class="text-xl font-bold mb-3"></h2>
 
                         <!-- STATUS + AUTHOR -->
-                        <!-- <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
-                                <span
-                                        class="px-3 py-1 bg-green-600 text-white rounded-full text-xs flex items-center gap-1">
-                                        Opened
-                                        <span class="w-2 h-2 bg-green-300 rounded-full inline-block"></span>
-                                </span>
-                                <span id="modalAuthor"></span>
-                                <span id="modalDate"></span>
-                        </div> -->
+                        
                         <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
-                                <span class="px-3 py-1 bg-green-600 text-white rounded-full text-xs">Opened</span>
 
-                                <span class="w-1.5 h-1.5 bg-gray-500 rounded-full"></span>
+                                <span id="modalStatus" class="px-3 py-1 rounded-full text-xs text-white"></span>
+
+                                <span id="statusDot" class="w-1.5 h-1.5 bg-gray-500 rounded-full"></span>
 
                                 <span id="modalAuthor"></span>
 
-                                <span class="w-1.5 h-1.5 bg-gray-500 rounded-full"></span>
+                                <span id="authorDot" class="w-1.5 h-1.5 bg-gray-500 rounded-full"></span>
 
                                 <span id="modalDate"></span>
+
                         </div>
 
                         <!-- LABELS -->
@@ -206,7 +170,7 @@
                         <div class="grid grid-cols-2 bg-gray-100 rounded-lg p-4">
 
                                 <div>
-                                        <p class="text-xs text-gray-40  0">Assignee:</p>
+                                        <p class="text-xs text-gray-400">Assignee:</p>
                                         <p id="modalAssignee" class="font-semibold"></p>
                                 </div>
 
@@ -227,7 +191,7 @@
 
                         <!-- BUTTON -->
                         <div class="text-right mt-6">
-                                <button onclick="closeModal()" class="px-5 py-2 bg-blue-700 text-white rounded-lg">
+                                <button onclick="closeModal()" class="px-5 py-2 bg-indigo-600 text-white rounded-lg border-none outline-none focus:outline-none">
                                         Close
                                 </button>
                         </div>
