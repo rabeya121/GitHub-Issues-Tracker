@@ -26,16 +26,17 @@ let allIssues = []
 
 async function loadIssues() {
 
-    const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
+document.getElementById("loader").style.display = "flex"
 
-    const data = await res.json()
+const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
 
-    allIssues = data.data
+const data = await res.json()
 
-    document.querySelector("h3.font-bold").innerText =
-        allIssues.length + " Issues";
+allIssues = data.data
 
-    displayIssues(allIssues)
+document.getElementById("loader").style.display = "none"
+
+displayIssues(allIssues)
 
 }
 
@@ -100,11 +101,7 @@ function displayIssues(issues) {
                    </span>`;
         }
 
-    
-
-
-
-document.getElementById("modalLabel").innerHTML = labelBadges;
+        document.getElementById("modalLabel").innerHTML = labelBadges;
 
         
 
@@ -263,7 +260,7 @@ if (labels.includes("enhancement")) {
     </span>`;
 }
 
-// document.getElementById("modalLabel").innerHTML = labelBadges;
+ document.getElementById("modalLabel").innerHTML = labelBadges;
 
 
 // -----------------Priority section-------------------

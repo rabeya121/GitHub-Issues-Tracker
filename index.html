@@ -125,6 +125,9 @@
                 </div>
 
         </div>
+        <div id="loader" class="flex justify-center mt-10">
+                <span class="loading loading-spinner loading-lg text-indigo-600"></span>
+        </div>
 
         <div class="max-w-6xl mx-auto mt-6">
                 <div id="issueContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -143,7 +146,7 @@
                         <h2 id="modalTitle" class="text-xl font-bold mb-3"></h2>
 
                         <!-- STATUS + AUTHOR -->
-                        
+
                         <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
 
                                 <span id="modalStatus" class="px-3 py-1 rounded-full text-xs text-white"></span>
@@ -191,7 +194,8 @@
 
                         <!-- BUTTON -->
                         <div class="text-right mt-6">
-                                <button onclick="closeModal()" class="px-5 py-2 bg-indigo-600 text-white rounded-lg border-none outline-none focus:outline-none">
+                                <button onclick="closeModal()"
+                                        class="px-5 py-2 bg-indigo-600 text-white rounded-lg border-none outline-none focus:outline-none">
                                         Close
                                 </button>
                         </div>
